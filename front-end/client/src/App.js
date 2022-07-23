@@ -14,14 +14,17 @@ import Playlist from "./pages/Playlist";
 import Search from "./pages/Search";
 import LikedSongs from "./pages/LikedSongs";
 import Profile from "./pages/Profile";
+import Cookies from "universal-cookie"
 
 const App = () => {
-	const user = true;
+	const cookies = new Cookies();
+	const token = cookies.get("token");
+
 	const location = useLocation();
 
 	return (
 		<Fragment>
-			{user &&
+			{token &&
 				location.pathname !== "/login" &&
 				location.pathname !== "/" &&
 				location.pathname !== "/signup" &&
@@ -34,29 +37,29 @@ const App = () => {
 				)}
 			<Switch>
 				<Route exact path="/" component={Main} />
-				<PrivateRoute exact user={user} path="/home" component={Home} />
+				<PrivateRoute exact user={token} path="/home" component={Home} />
 				<PrivateRoute
 					exact
-					user={user}
+					user={token}
 					path="/collection/tracks"
 					component={LikedSongs}
 				/>
 				<PrivateRoute
 					exact
-					user={user}
+					user={token}
 					path="/collection/playlists"
 					component={Library}
 				/>
-				<PrivateRoute exact user={user} path="/search" component={Search} />
+				<PrivateRoute exact user={token} path="/search" component={Search} />
 				<PrivateRoute
 					exact
-					user={user}
+					user={token}
 					path="/playlist/:id"
 					component={Playlist}
 				/>
-				<PrivateRoute exact user={user} path="/me" component={Profile} />
-				{user && <Redirect from="/signup" to="/home" />}
-				{user && <Redirect from="/login" to="/home" />}
+				<PrivateRoute exact user={token} path="/me" component={Profile} />
+				{token && <Redirect from="/signup" to="/home" />}
+				{token && <Redirect from="/login" to="/home" />}
 				<Route path="/signup" component={SignUp} />
 				<Route path="/login" component={Login} />
 				<Route path="/not-found" component={NotFound} />
