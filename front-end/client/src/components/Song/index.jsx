@@ -84,9 +84,9 @@ const Song = ({ song, playing, onClick, handleNextSong }) => {
     finalY = divRef.current.offsetTop;
 
     let newY, newX;
-    if (finalX > initialX * 2) {
+    if (finalX > initialX + (initialX * 2) / 3) {
       //animate move to right
-      divRef.current.styles.opacity = 0;
+      divRef.current.style.opacity = 0;
       //reset position
       divRef.current.style.left = initialX + "px";
       divRef.current.style.top = initialY + "px";
@@ -94,7 +94,7 @@ const Song = ({ song, playing, onClick, handleNextSong }) => {
       //call next song
       handleNextSong();
       return;
-    } else if (finalX < initialX * 2) {
+    } else if (finalX < initialX - (initialX * 2) / 3) {
       //animate move to left
       divRef.current.style.opacity = 0;
       divRef.current.style.left = initialX + "px";
