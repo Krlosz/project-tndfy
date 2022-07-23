@@ -1,7 +1,7 @@
 .container {
 	height: 6rem;
 	width: calc(100% - 28rem);
-	background: linear-gradient(149.46deg, #450af5, #8e8ee5 99.16%);
+	background: linear-gradient(149.46deg, #01012b, #d1f7ff 99.16%);
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -30,6 +30,9 @@
 	}
 
 	.right {
+		display: flex;
+        width: 15%;
+		justify-content: space-between;
 		.profile_menu {
 			display: flex;
 			align-items: center;
@@ -57,6 +60,29 @@
 				width: 2.5rem;
 				height: 2.5rem;
 			}
+		}
+
+
+		button {
+			display: flex;
+					align-items: center;
+					padding: 0.8rem;
+					color: var(--white);
+					border-radius: 2rem;
+					color: #fff;
+					background-color: #fd8090;
+					cursor: pointer;
+					&:hover {
+						background-color: var(--light-black);
+					}
+					p {
+						font-size: 1.5rem;
+						font-weight: 600;
+						margin: 0 0.6rem;
+					}
+			
+		   
+		   
 		}
 	}
 

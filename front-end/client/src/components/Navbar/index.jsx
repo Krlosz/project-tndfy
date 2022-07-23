@@ -10,10 +10,14 @@ import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import styles from "./styles.module.scss";
+import Button from '../Modal/button';
+import Modal, { ModalBody, ModalHeader } from '../Modal/modal';
+
 
 const Navbar = () => {
 	const [menu, setMenu] = useState(false);
 	const history = useHistory();
+	const [showModal, setShowModal] = useState(false);
 
 	return (
 		<div className={styles.container}>
@@ -26,8 +30,31 @@ const Navbar = () => {
 				</div>
 			</div>
 			<div className={styles.right}>
+
+  <div>
+            <Button onClick={() => setShowModal(true)}>
+			<p>Unlimited</p> 
+            </Button>
+            <Modal
+                show={showModal}
+                setShow={setShowModal}
+            // hideCloseButton
+            >
+                <ModalHeader>
+                    <h2>Modal header</h2>
+                </ModalHeader>
+                <ModalBody>
+                    <span style={{ textAlign: 'justify' }}>
+                        el modal
+                    </span>
+                </ModalBody>
+              
+            </Modal>
+        </div>
+
+
 				<div
-					style={{ backgroundColor: `${menu ? "#282828" : "#000"}` }}
+					style={{ backgroundColor: `${menu ? "#282828" : "#005678"}` }}
 					className={styles.profile_menu}
 					onClick={() => setMenu(!menu)}
 				>
@@ -35,6 +62,7 @@ const Navbar = () => {
 					<p>Krlosz</p>
 					{menu ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
 				</div>
+			
 			</div>
 			{menu && (
 				<ClickAwayListener onClickAway={() => setMenu(false)}>
