@@ -86,22 +86,34 @@ const Song = ({ song, playing, onClick, handleNextSong }) => {
     let newY, newX;
     if (finalX > initialX + (initialX * 2) / 3) {
       //animate move to right
-      divRef.current.style.opacity = 0;
-      //reset position
-      divRef.current.style.left = initialX + "px";
-      divRef.current.style.top = initialY + "px";
 
       //call next song
-      handleNextSong();
+      let res = handleNextSong();
+
+      //   divRef.current.style.opacity = 0;
+      //   divRef.current.style.display = "none";
+      //reset position
+      //   divRef.current.style.left = initialX + "px";
+      //   divRef.current.style.top = initialY + "px";
+      //   divRef.current.style.display = "flex";
+      //   if (res) {
+      //   divRef.current.style.display = "flex";
+      //   }
       return;
     } else if (finalX < initialX - (initialX * 2) / 3) {
       //animate move to left
-      divRef.current.style.opacity = 0;
-      divRef.current.style.left = initialX + "px";
-      divRef.current.style.top = initialY + "px";
+      //   divRef.current.style.opacity = 0;
 
       //call next song
-      handleNextSong();
+      let res = handleNextSong();
+
+      //   divRef.current.style.display = "none";
+      //   divRef.current.style.left = initialX + "px";
+      //   divRef.current.style.top = initialY + "px";
+      //   if (res) {
+      //   divRef.current.style.display = "flex";
+      //   }
+      //   divRef.current.style.display = "flex";
       return;
     }
     //animation to move back to original position

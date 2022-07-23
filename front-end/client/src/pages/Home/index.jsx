@@ -52,14 +52,24 @@ const Home = () => {
     // dispatch(getSongs(token));
   }, []);
   const handleNextSong = async () => {
+    //clear current song
+    setSong(null);
+
     const cookies = new Cookies();
     const token = cookies.get("token");
     if (!token) logout(history);
+
     const res = await getNextRandomSong(token);
-    if (!res.success) return alert("No hay canciones, revisar con admin.");
-    else if (res.logout) return logout(history);
+    if (res?.logout) {
+      dispatch({ type: "RESET" });
+      return logout(history);
+    } else if (!res.success) {
+      setSong(null);
+      return alert(res?.error ?? "No hay canciones, revisar con admin.");
+    }
 
     setSong(res.song);
+    return true;
   };
   return (
     <Fragment>
